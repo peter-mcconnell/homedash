@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0f17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Home Dashboard</title>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+<header id="top">
+  <div class="row between">
+    <div>
+      <div id="m-clock">--:--</div>
+      <div id="m-date" class="muted"></div>
+    </div>
+    <div id="m-now" class="right"></div>
+  </div>
+  <div id="m-greet"></div>
+</header>
+
+<main>
+  <section class="card hidden" id="c-notes"><h2>📌 Notes</h2><div id="m-notes"></div></section>
+  <section class="card hidden" id="c-alerts"><h2>Warnings <span class="sub" id="m-route"></span></h2><div id="m-alerts"></div></section>
+  <section class="card" id="c-today"><h2>Today</h2><div id="m-today"></div></section>
+  <section class="card" id="c-solar"><h2>Solar &amp; battery <span id="m-solar-sub" class="sub"></span></h2><div id="m-solar"></div></section>
+  <section class="card" id="c-weather"><h2>Weather <span id="m-sun" class="sub"></span></h2><div id="m-hourly" class="hscroll"></div><div id="m-daily"></div></section>
+  <section class="card" id="c-pier"><h2>Wind, tides &amp; fishing</h2><div id="m-pier"></div></section>
+  <section class="card" id="c-feed"><h2>News &amp; events</h2><div id="m-tabs" class="chips"></div><div id="m-feed"></div></section>
+  <section class="card" id="c-plex"><h2 id="m-plex-title">Plex</h2><div id="m-plex" class="hscroll"></div></section>
+  <section class="card" id="c-net"><h2>Network</h2><div id="m-net"></div></section>
+  <p class="foot muted">Updated <span id="m-updated">–</span> · <a href="/tv">TV view</a></p>
+</main>
+
+<div id="sheet" class="hidden">
+  <div id="sheet-bar"><button id="sheet-close" aria-label="Close">‹ Back</button><span id="sheet-title"></span></div>
+  <div id="sheet-body"></div>
+</div>
+<script src="mobile.js"></script>
+</body>
+</html>

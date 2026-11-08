@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e3a8a"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <clipPath id="house"><path d="M256 104 L404 222 V396 a20 20 0 0 1 -20 20 H128 a20 20 0 0 1 -20 -20 V222 Z"/></clipPath>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- inside the house: a Mourne skyline at dusk -->
+  <g clip-path="url(#house)">
+    <rect x="100" y="100" width="312" height="320" fill="#0b1220" opacity="0.35"/>
+    <circle cx="318" cy="262" r="34" fill="url(#sky)"/>
+    <path d="M100 360 L170 290 L205 318 L262 246 L300 286 L336 262 L412 336 V420 H100 Z" fill="#e2e8f0" opacity="0.9"/>
+    <path d="M100 384 L180 334 L238 364 L300 322 L360 352 L412 334 V420 H100 Z" fill="#94a3b8"/>
+  </g>
+  <!-- house outline -->
+  <path d="M256 104 L404 222 V396 a20 20 0 0 1 -20 20 H128 a20 20 0 0 1 -20 -20 V222 Z"
+        fill="none" stroke="#ffffff" stroke-width="24" stroke-linejoin="round"/>
+  <path d="M84 238 L256 100 L428 238" fill="none" stroke="#ffffff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

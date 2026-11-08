@@ -1,0 +1,4 @@
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0b0f17; }
+iframe { border: 0; width: 1920px; height: 1080px; display: block; }
+#msg { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; display: none;
+       color: #8a94a6; font: 36px Arial, sans-serif; text-align: center; line-height: 1080px; }

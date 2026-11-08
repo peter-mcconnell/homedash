@@ -1,0 +1,12 @@
+services:
+  homedash:
+    build: .
+    container_name: homedash
+    network_mode: host          # reaches Plex/Pi-hole on 127.0.0.1 and LAN devices; serves :8090
+    env_file: .env              # secrets only (see .env.example); chmod 600, never committed
+    environment:
+      PORT: "8090"
+    volumes:
+      - ./config.toml:/config/config.toml:ro   # household, location, sources, widgets (see config.example.toml)
+      - ./data:/data                           # caches, history, notes, photos (data/photos = your own backgrounds)
+    restart: unless-stopped

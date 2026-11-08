@@ -1,0 +1,199 @@
+# homedash configuration example. Copy it to config.toml and edit it (config.toml is git-ignored).
+#
+# Every key has a built-in default (server/config.py), so you can delete anything you don't use.
+# Secrets such as API tokens and passwords never go here: they go in .env (see .env.example).
+#
+# A widget only appears when both of these are true:
+#   - it is switched on in [widgets] (all are on by default)
+#   - what it needs is present (e.g. solar needs SolaX credentials in .env, birthdays needs [[family]])
+# So a missing section simply hides that widget.
+
+[household]
+title = "The Murphy House"        # browser / app title
+greeting_name = "Murphys"         # "Good morning, Murphys"
+timezone = "Europe/London"
+
+[location]                        # used for weather, events radius, travel alerts
+name = "Newcastle"
+lat = 54.214
+lon = -5.890
+
+[weather]
+# Optional severe-weather warnings RSS feed (here: the Met Office regional feed for Northern Ireland).
+# Other UK regions: replace /ni with e.g. /se (London & SE England), /dg (Grampian), /wl (Wales).
+warnings_feed = "https://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/ni"
+
+[widgets]
+# Turn any widget off explicitly. Omitted means on (if what it needs is present).
+# weather, marine, plex, news, apps, solar, network, alerts, music, birthdays, bins, clubs,
+# events, notes, backgrounds, notifications
+# solar = false
+# plex = false
+
+[marine]                          # tides + "worth going to the pier?" panel; delete the section to hide it
+place = "Newcastle"
+lat = 54.205                      # a point just offshore (Open-Meteo marine model)
+lon = -5.880
+onshore_from = 30                 # wind directions (degrees) that blow onto your shore
+onshore_to = 200
+
+# News tabs, in order. local = true also feeds the "Local news / events" card.
+[[news.feeds]]
+name = "BBC News NI"
+short = "BBC NI"                  # tab label (optional)
+url = "https://feeds.bbci.co.uk/news/northern_ireland/rss.xml"
+local = false
+
+[[news.feeds]]
+name = "My Local Paper"
+url = "https://example-local-paper.co.uk/feed/"
+local = true
+
+[school]
+# Newsletters from a school site on the "School Website Design" (swd) platform: shown as a news
+# tab, and "DATE REMINDER" sections in the newsletter PDFs appear on the clubs/today calendar.
+enabled = false
+name = "Example PS"
+site = "https://www.example-ps.co.uk"
+newsletter_dates = true
+max_age_days = 60
+classes = { Aoife = "P5", Cian = "P2" }   # child -> class, to pick out class-specific dates
+
+[events]
+radius_miles = 20
+near_towns = ["Newcastle", "Dundrum", "Castlewellan", "Bryansford"]   # "On today nearby" ranking
+discover_ni = { enabled = false }   # Discover Northern Ireland what's-on (NI only)
+visit_mgs = { enabled = false }     # Visit Mourne, Gullion & Strangford what's-on (NI only)
+
+# Eventbrite organisers to follow (the number at the end of the organiser page URL).
+# [[events.eventbrite]]
+# name = "Example Community Hub"
+# organizer_id = "12345678901"
+
+# A Facebook page via an RSS bridge (e.g. FetchRSS). posters = true lets tools/hub-posters read
+# event posters with Claude and add their dates to the events list.
+# [[events.facebook_feeds]]
+# name = "Example Community Hub"
+# short = "Hub"
+# url = "https://fetchrss.com/feed/XXXXXXXX.rss"
+# posters = false
+
+[bins]
+# Bin collection rotation: the first rotation entry goes out on the anchor date, then the
+# rotation repeats each week.
+enabled = false
+day = "Tuesday"
+anchor = "2026-01-06"
+rotation = [["black"], ["blue", "brown"]]
+
+# Birthdays (countdown in the header). display is the name shown (optional).
+[[family]]
+name = "Aoife Murphy"
+dob = "2016-03-14"
+
+[[family]]
+name = "Cian Murphy"
+dob = "2019-10-02"
+
+[[family]]
+name = "Sarah Murphy"
+dob = "1986-05-30"
+display = "Mum"
+
+# Weekly clubs and activities. Colours tag each person on the calendar.
+[clubs.people]
+Aoife = "#f472b6"
+Cian = "#60a5fa"
+
+[[clubs.weekly]]
+who = "Aoife"
+day = "Mon"                       # Mon..Sun
+start = "18:00"
+end = "19:00"
+what = "Swimming"
+where = "Leisure centre"          # optional
+
+[[clubs.weekly]]
+who = "Cian"
+day = "Sat"
+what = "Football"
+note = "home games only"          # optional; start/end optional too
+
+[network]
+# Router stats: "ee_smarthub" (EE Smart Hub Pro via USP/MQTT, needs EE_HUB_PASSWORD) or "" for none.
+# Latency checks to the services below work on any network.
+router = ""
+router_host = "192.168.1.254"
+names = { "192.168.1.10" = "server" }   # friendly names for the Pi-hole client list
+
+[[network.services]]
+name = "Router"
+host = "192.168.1.254"
+port = 443
+
+[plex]
+url = "http://127.0.0.1:32400"    # needs PLEX_TOKEN in .env
+
+[pihole]
+url = "http://127.0.0.1:8053"     # Pi-hole v6; needs PIHOLE_PASSWORD in .env
+
+[alerts]
+# Travel & power alerts: provider "ni" = TrafficWatchNI roadworks/incidents + NIE PowerCheck faults.
+# Leave provider empty to hide the widget.
+provider = ""
+route_label = "Newcastle to Belfast"
+places = ["newcastle", "dundrum", "clough", "ballynahinch", "carryduff", "belfast"]  # towns on your routes
+local_places = ["newcastle", "dundrum"]                                            # flagged as "local"
+power_route_km = 5                # power faults within this distance of a route
+power_home_km = 10                # ...or of home
+
+[alerts.town_roads]               # roads that matter through each town
+clough = ["A24"]
+ballynahinch = ["A24"]
+belfast = ["A24", "A55"]
+
+[[alerts.routes]]                 # lat/lon waypoints along each route you drive
+name = "via Ballynahinch"
+points = [[54.214, -5.890], [54.290, -5.840], [54.403, -5.897], [54.597, -5.930]]
+
+[backgrounds]
+# Rotating landscape backgrounds from a Wikimedia Commons category (credited on screen).
+# Your own photos in data/photos/ are mixed in too.
+commons_category = "Category:Mourne Mountains"
+priority_words = ["Donard", "Slieve"]   # prefer files whose titles contain these
+target = 30                       # how many Commons photos to keep cached
+
+# TV app tiles (Samsung Tizen app IDs; the shell tries ids first, then names).
+# Logos are built in for youtube, iplayer, channel4, spotify, netflix and plex.
+[[apps]]
+key = "youtube"
+label = "YouTube"
+names = ["YouTube"]
+ids = ["111299001912", "9Ur5IzDKqV.TizenYouTube"]
+
+[[apps]]
+key = "iplayer"
+label = "iPlayer"
+names = ["BBC iPlayer"]
+ids = ["DqEoaplKlw.bbchybrid"]
+
+[[apps]]
+key = "plex"
+label = "Plex"
+names = ["Plex"]
+ids = ["kIciSQlYEM.plex"]
+hidden = true                     # not shown as a tile, but used to open films from the Plex card
+
+# Radio stations (relayed through the server so the TV can play plain HTTP streams).
+[[radio]]
+id = "swiss"
+name = "Radio Swiss Classic"
+url = "http://stream.srg-ssr.ch/m/rsc_de/mp3_128"
+
+[[radio]]
+id = "drone"
+name = "SomaFM Drone Zone"
+url = "https://ice1.somafm.com/dronezone-128-mp3"
+
+[tv]
+dashboard_url = "http://192.168.1.10:8090/"   # where the TV app points (tizen/build.sh reads this)

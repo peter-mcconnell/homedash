@@ -1,0 +1,12 @@
+# secrets and household data
+.env
+config.toml
+family.json
+schedule.json
+# runtime data: caches, photos, notes, history
+data/
+# build output
+__pycache__/
+*.pyc
+*.wgt
+tizen/build/

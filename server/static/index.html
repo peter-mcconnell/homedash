@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920, height=1080, user-scalable=no">
+<title>Home Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="bg-a" class="bg"></div>
+<div id="bg-b" class="bg"></div>
+<div id="bg-shade"></div>
+<div id="confetti"></div>
+
+<div id="screen">
+
+  <div id="top" class="row">
+    <div id="clockbox">
+      <div id="clock">--:--</div>
+      <div id="date">&nbsp;</div>
+    </div>
+    <div id="hello">
+      <div id="greeting">&nbsp;</div>
+      <div id="family-line" class="line"></div>
+      <div id="bins-line" class="line"></div>
+      <div id="kids-line" class="line focusable" data-action="kids"></div>
+      <div id="event-line" class="line focusable" data-action="event"></div>
+    </div>
+    <div id="pills">
+      <div id="bell" class="hidden" data-action="notifications"></div>
+      <div id="warnpill" class="hidden" data-action="alerts"></div>
+      <div id="notepill" class="hidden" data-action="notes"></div>
+    </div>
+    <div id="nowbox">
+      <div id="now-icon" class="icon-xl"></div>
+      <div id="now-text">
+        <div id="now-temp">--°</div>
+        <div id="now-label">&nbsp;</div>
+        <div id="now-meta" class="muted">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="middle" class="row">
+    <div id="weather" class="card focusable" data-action="weather">
+      <div id="warn" class="hidden"></div>
+      <div class="card-title"><span>Next 12 hours</span><span id="place" class="muted"></span></div>
+      <div id="hourly" class="row"></div>
+      <div class="card-title sub"><span>Next 5 days</span><span id="sun" class="muted"></span></div>
+      <div id="daily" class="row"></div>
+    </div>
+
+    <div id="pier" class="card focusable" data-action="pier">
+      <div class="card-title"><span>Wind &amp; pier</span><span id="wind-force" class="muted"></span></div>
+      <div id="wind-body">
+        <div id="wind-dial"></div>
+        <div id="wind-numbers">
+          <div><span id="wind-speed" class="big">--</span> <span class="unit">mph</span></div>
+          <div class="muted">gusting <span id="wind-gust">--</span> mph</div>
+          <div id="wind-from" class="muted">&nbsp;</div>
+        </div>
+      </div>
+      <div id="tide-head" class="row"></div>
+      <div id="tide-chart"></div>
+      <div id="fishing"></div>
+    </div>
+
+    <div id="plex" class="card">
+      <div id="plex-head" class="card-title focusable" data-action="plex"><span id="plex-title">Plex</span><span id="plex-meta" class="muted"></span></div>
+      <div id="plex-body"></div>
+    </div>
+  </div>
+
+  <div id="bottom" class="row">
+    <div id="news" class="card">
+      <div id="news-head" class="card-title focusable" data-action="feed"><span>Local news / events</span><span id="news-source" class="muted"></span></div>
+      <div id="news-row">
+        <div id="news-pic" class="none"></div>
+        <div id="news-text">
+          <div id="news-lead" class="focusable" data-action="article" data-idx="0"></div>
+          <div id="news-1" class="news-item focusable" data-action="article" data-idx="1"></div>
+          <div id="news-2" class="news-item focusable" data-action="article" data-idx="2"></div>
+        </div>
+      </div>
+    </div>
+    <div id="apps" class="card">
+      <div id="music-head" class="card-title focusable" data-action="music"><span>Watch &amp; listen</span><span id="music-state" class="muted">♫ off</span></div>
+      <div class="app-grid" id="app-grid"></div>
+    </div>
+    <div id="solar" class="card focusable" data-action="solar">
+      <div class="card-title"><span>Solar</span><span id="solar-today" class="muted"></span></div>
+      <div id="solar-body"></div>
+    </div>
+    <div id="net" class="card focusable" data-action="network">
+      <div class="card-title"><span>Network</span><span id="net-ip" class="muted"></span></div>
+      <div id="net-body"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="credit"></div>
+<div id="hint">◀ ▶ ▲ ▼ to move · OK to open · Back to close</div>
+
+<div id="overlay" class="hidden">
+  <div id="panel">
+    <div id="panel-head"><span id="panel-title"></span><span class="muted">▲▼ scroll · Back to close</span></div>
+    <div id="panel-body"></div>
+  </div>
+</div>
+<div id="toast" class="hidden"></div>
+<audio id="radio" preload="none"></audio>
+
+<script src="app.js"></script>
+</body>
+</html>
